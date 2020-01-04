@@ -1,8 +1,68 @@
-import React from 'react';
-import { Header, } from 'semantic-ui-react';
+import React, { useState, useEffect, } from 'react';
+import axios from 'axios';
+import { Header, Grid, Image } from 'semantic-ui-react';
 
-const Home = () => (
-  <Header as="h3" textAlign="center">Devise Auth App</Header>
-);
+const Home = () => {
+  const [videos, setVideos] = useState([])
+
+  useEffect( () => {
+    axios.get("/api/videos")
+    .then( res => setVideos(res.data) )
+  }, [])
+
+
+  return (
+    <>
+    <br />
+    <br />
+    <Header>All Videos</Header>
+        <br />
+            <Grid>
+            <Grid.Row columns={2}>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row columns={4}>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row columns={5}>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column>
+                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          </>
+  
+  )
+}
+
 
 export default Home;
+
+
