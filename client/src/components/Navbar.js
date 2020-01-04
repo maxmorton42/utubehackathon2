@@ -15,15 +15,17 @@ class Navbar extends React.Component {
             <Menu.Item fitted='vertically'>
               <Image verticalAlign='middle' circular src={require('./images/utoob_logo.png')} size='mini'/>
             </Menu.Item>
-            <Menu.Item fitted='vertically' style={{ minHeight: 70 }}>
-              <Button color='red' as='a'>
-                Upload Video
-              </Button>
-              {/* fitted='vertically'
-              verticalAlign='middle'
-              name='logout'
-              onClick={() => handleLogout(this.props.history)} */}
-              </Menu.Item>
+						<Link to='/videos/new'>
+							<Menu.Item fitted='vertically' style={{ minHeight: 70 }}>
+								<Button color='red' as='a'>
+									Upload Video
+								</Button>
+								{/* fitted='vertically'
+								verticalAlign='middle'
+								name='logout'
+								onClick={() => handleLogout(this.props.history)} */}
+								</Menu.Item>
+							</Link>
           </Menu.Menu>
         </Container>
       )

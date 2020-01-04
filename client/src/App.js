@@ -10,6 +10,7 @@ import Video from './components/Video';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, Divider, } from "semantic-ui-react";
+import VideoForm from './components/VideoForm';
 
 const App = () => (
   <>
@@ -26,6 +27,7 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+					<ProtectedRoute exact path="/videos/new" component={VideoForm.js}/>
           <ProtectedRoute exact path='/my_likedvids' component={MyLikedVideos} />
 				</Container>
 					<ProtectedRoute exact path="/videos/:id" component={Video} />
