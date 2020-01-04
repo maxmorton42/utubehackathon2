@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from './components/Home';
+import MyLikedVideos from './components/MyLikedVideos'
 import NoMatch from './components/NoMatch';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
@@ -24,6 +25,7 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <ProtectedRoute exact path='/my_likedvids' component={MyLikedVideos} />
           <ProtectedRoute exact path="/videos/:id" component={Video} />
           <Route component={NoMatch} />
         </Switch>
