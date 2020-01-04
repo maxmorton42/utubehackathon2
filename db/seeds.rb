@@ -1,5 +1,5 @@
 i = 0
-urls = ["https://www.youtube.com/watch?v=OTUIxtoHxNQ", "https://www.youtube.com/watch?v=EELBDtM3FGs", "https://www.youtube.com/watch?v=OC6sMfq2wq0&t=629s"]
+urls = ["https://www.youtube.com/embed/JtGtqmC5wU4", "https://www.youtube.com/embed/kl1fytRAMRE", "https://www.youtube.com/embed/cwsn9N3U59c"]
 3.times do
 	user = User.create(
 		email: "test#{i}@test.com",
