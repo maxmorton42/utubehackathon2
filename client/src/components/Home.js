@@ -16,12 +16,13 @@ const Home = () => {
     <br />
     <Header>All Videos</Header>
         <br />
-            <Grid>
-            <Grid.Row columns={2}>
+            <Grid columns={2} divided>
+            <Grid.Row >
               <Grid.Column>
                 <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
               </Grid.Column>
             </Grid.Row>
+
 
             <Grid.Row columns={4}>
               <Grid.Column>
