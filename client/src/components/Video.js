@@ -33,8 +33,8 @@ const Video = (props) => {
 	}
 
 	const deleteVideo = (id) => {
-    axios.delete(`/api/videos/${id}`)
-    .then( res => props.history.push.home )
+		axios.delete(`/api/videos/${id}`)
+    .then( res => props.history.push('/') )
   }
 
 	const deleteComment = (id) => {
