@@ -27,7 +27,7 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-					<ProtectedRoute exact path="/videos/new" component={VideoForm.js}/>
+					<ProtectedRoute exact path="/videos/new" component={VideoForm}/>
           <ProtectedRoute exact path='/my_likedvids' component={MyLikedVideos} />
 				</Container>
 					<ProtectedRoute exact path="/videos/:id" component={Video} />
