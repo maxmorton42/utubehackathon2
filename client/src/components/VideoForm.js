@@ -2,7 +2,7 @@ import React, { useState, } from "react";
 import axios from "axios";
 import { Form, } from "semantic-ui-react";
 
-const FriendsForm = (props) => {
+const VideoForm = (props) => {
   const [title, setTitle] = useState("");
   const [duration, setDuration] = useState("");
   const [description, setDescription] = useState("");
@@ -47,54 +47,54 @@ return (
       <Form onSubmit={handleSubmit}>
         <Form.Group widths="equal">
           <Form.Input
-            label="Name"
-            placeholder="Name"
-            name="name"
+            label="Title"
+            placeholder="Title"
+            name="title"
             required
-            onChange={handleNameChange}
-            value={name}
+            onChange={handleTitleChange}
+            value={title}
           />
           <Form.Input
-            label="Age"
-            placeholder="Age"
-            name="age"
+            label="Duration"
+            placeholder="Duration"
+            name="duration"
             required
-            onChange={handleAgeChange}
-            value={age}
+            onChange={handleDurationChange}
+            value={duration}
             />
             </Form.Group>
             <Form.Group widths="equal">
           <Form.Input
-            label="Name"
-            placeholder="Name"
-            name="name"
+            label="Genre"
+            placeholder="Genre"
+            name="genre"
             required
-            onChange={handleNameChange}
-            value={name}
+            onChange={handleGenreChange}
+            value={genre}
           />
           <Form.Input
-            label="Age"
-            placeholder="Age"
-            name="age"
+            label="Trailer"
+            placeholder="Trailer"
+            name="trailer"
             required
-            onChange={handleAgeChange}
-            value={age}
+            onChange={handleTrailerChange}
+            value={trailer}
             />
             </Form.Group>
             <Form.Group>
             <Form.TextArea
-            label="Age"
-            placeholder="Age"
-            name="age"
+            label="Description"
+            placeholder="Description"
+            name="description"
             required
-            onChange={handleAgeChange}
-            value={age}
+            onChange={handleDescriptionChange}
+            value={description}
             />
             </Form.Group>
-        <Form.Button>Add Friend</Form.Button>
+        <Form.Button>Add Video</Form.Button>
       </Form>
     </>
   )
 }
 
-export default FriendsForm;
+export default VideoForm;
