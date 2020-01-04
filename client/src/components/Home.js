@@ -24,7 +24,7 @@ const Home = () => {
     <br />
 		<Header as="h2">All Videos</Header>
 		<Divider hidden />
-		<Grid columns={5}>
+		<Grid columns={10}>
 			{
 				videos.map( vid => {
 					return(
@@ -33,8 +33,6 @@ const Home = () => {
 								<Link to={`/videos/${vid.id}`}>
 									<Image src={`http://img.youtube.com/vi/${getVidId(vid.trailer)}/0.jpg`} />
 								</Link>
-							</Grid.Column>
-							<Grid.Column>
 								<p>
 									{vid.description}
 								</p>

@@ -16,7 +16,7 @@ class Navbar extends React.Component {
                 <Image verticalAlign='top' circular src={require('./images/utoob_logo.png')} size='mini'/>
               </Menu.Item>
             </Link>
-						<Link to='/videos/new'>
+						<Link to='/newvideo'>
 							<Menu.Item fitted='vertically' style={{ minHeight: 74 }}>
 								<Button color='red' as='a'>
 									Upload Video
