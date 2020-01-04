@@ -7,8 +7,7 @@ import Iframe from 'react-iframe';
 
 
 const Video = (props) => {
-
-	const [video, setVideo] = useState({});
+	const [video, setVideo] = useState({})
 	const [comments, setComments] = useState([])
 
 	useEffect( () => {
@@ -23,9 +22,14 @@ const Video = (props) => {
 	const addComment = (body) => {
 		axios.post(`/api/videos/${props.match.params.id}/comments`, { body, video_id: props.match.params.id })
 			.then( res => {
-				setComments([...comments, res.data]);
+				setComments([...comments, res.data])
 			})
 	}
+
+	const deleteVideo = (id) => {
+    axios.delete(`/api/videos/${id}`)
+    .then( res => props.history.push.home )
+  }
 
 	const deleteComment = (id) => {
 		axios.delete(`/api/videos/${props.match.params.id}/comments/${id}`)
@@ -64,7 +68,12 @@ const Video = (props) => {
 					position="relative"/>
 			</Item>
 				<Container>
-			<h1>	{video.title  }</h1>               
+			<h1>	{video.title  }</h1>   
+			<Button color="green" icon basic
+              onClick={() => deleteVideo(video.id)}
+              >
+								 <Icon name="trash alternate" />
+              </Button>            
 			</Container>
 			<Divider />
 			<Container>

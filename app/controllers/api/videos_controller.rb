@@ -1,6 +1,6 @@
 class Api::VideosController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_video, only: [:update]
+	before_action :set_video, only: [:update, :destroy]
 
 	def index
 		render json: Video.all
