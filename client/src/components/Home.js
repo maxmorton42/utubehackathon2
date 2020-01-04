@@ -2,7 +2,7 @@ import React, { useState, useEffect, } from 'react';
 import {Link, } from 'react-router-dom';
 import axios from 'axios';
 import VideoForm from './VideoForm';
-import { Header, Grid, Image, Divider, Icon } from 'semantic-ui-react';
+import { Header, Grid, Image, Divider, Icon, Menu, Button } from 'semantic-ui-react';
 
 
 const Home = () => {
@@ -23,6 +23,11 @@ const Home = () => {
     <br />
     <br />
 		<Header as="h2">All Videos</Header>
+		<Button color="black" icon basic
+					onClick={() => {}}
+					>
+						<Icon name="pencil" />
+		</Button>
 		<Divider hidden />
 		<Grid columns={10}>
 			{

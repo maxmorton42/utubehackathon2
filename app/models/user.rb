@@ -7,11 +7,6 @@ class User < ActiveRecord::Base
   
   serialize :video_status, Array
 
-  def self.random_video(ids)
-    ids = ids.empty? ? [0] : ids
-    Video.where("id NOT IN (?)", ids).order("RANDOM()")
-  end
-
   def self.liked(ids)
     ids = ids.empty? ? [0] : ids
     Video.where("id IN (?)", ids)

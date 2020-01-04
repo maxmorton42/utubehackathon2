@@ -17,8 +17,8 @@ const Video = (props) => {
 	const user = useContext(AuthContext);
 
 	useEffect( () => {
-		const { id } = props.match.params
-    axios.get(`/api/videos/${props.location.pathname.charAt(props.location.pathname.length-1)}`)
+		const { id } = props.match.params;
+    axios.get(`/api/videos/${id}`)
     .then( res =>{
 			setVideo(res.data);
 		});
@@ -26,12 +26,16 @@ const Video = (props) => {
 		.then( res => setComments( res.data ) )
 	}, []) 
 	const addComment = (body) => {
-		console.log("add called!");
 		axios.post(`/api/videos/${props.match.params.id}/comments`, { body, video_id: props.match.params.id })
 			.then( res => {
-				setComments([...comments, res.data]);
+				setComments([...comments, res.data])
 			})
 	}
+
+	const deleteVideo = (id) => {
+    axios.delete(`/api/videos/${id}`)
+    .then( res => props.history.push.home )
+  }
 
 	const deleteComment = (id) => {
 		axios.delete(`/api/videos/${props.match.params.id}/comments/${id}`)
@@ -75,7 +79,7 @@ const Video = (props) => {
 							<List.Description> {comment.created_at}</List.Description>
 						</>
 				}
-				{ user.id === comment.user_id ?
+				{ user.user.id === comment.user_id ?
 					<>
 						<Button color="red" icon basic
 									onClick={() => deleteComment(comment.id)}
@@ -108,12 +112,17 @@ const Video = (props) => {
 					position="relative"/>
 			</Item>
 				<Container>
-			<h1>	{video.title  }</h1>               
+			<h1>	{video.title  }</h1>   
+			<Button color="green" icon basic
+              onClick={() => deleteVideo(video.id)}
+              >
+								 <Icon name="trash alternate" />
+              </Button>            
 			</Container>
 			<Divider />
 			<Container>
-				User
-				</Container>
+				<p>{video.description}</p>
+			</Container>
 			<Divider hidden />
 			<Container>
 				<CommentForm add={addComment} id={props.match.params}/>
