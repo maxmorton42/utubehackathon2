@@ -4,12 +4,17 @@ import axios from 'axios';
 import CommentForm from './CommentForm'
 import {Divider, Grid, Segment, Header, Container, Item, List, Button, Icon } from 'semantic-ui-react';
 import Iframe from 'react-iframe';
+import User from './User';
+import {AuthContext} from '../providers/AuthProvider';
 
 
 const Video = (props) => {
 
 	const [video, setVideo] = useState({});
-	const [comments, setComments] = useState([])
+	const [comments, setComments] = useState([]);
+	const [isForm, setForm] = useState(false);
+	const [currId, setCurrId] = useState(null);
+	const user = useContext(AuthContext);
 
 	useEffect( () => {
 		const { id } = props.match.params
@@ -21,6 +26,7 @@ const Video = (props) => {
 		.then( res => setComments( res.data ) )
 	}, []) 
 	const addComment = (body) => {
+		console.log("add called!");
 		axios.post(`/api/videos/${props.match.params.id}/comments`, { body, video_id: props.match.params.id })
 			.then( res => {
 				setComments([...comments, res.data]);
@@ -32,23 +38,61 @@ const Video = (props) => {
 		.then( res => setComments(comments.filter( c => c.id !== id), ))
 	}
 
+	const editComment = (body) => {
+		console.log("edit called!");
+		axios.put(`/api/videos/${props.match.params.id}/comments/${currId}`, { body, video_id: props.match.params.id })
+			.then( res => {
+				setComments(comments.filter( c => {
+					if(c.id === currId)
+						return res.data;
+					return c;
+				}));
+				setForm(!isForm);
+				setCurrId(null);
+			})
+	}
+
+	const toggleForm = (id) => {
+		setCurrId(id);
+		setForm(!isForm);
+	}
+
 	const renderComments = () => {
-		return comments.map( comment => (
-			<Segment key={comment.id}>
-				<List.Header as="h2">{comment.user_id}</List.Header>
+		return comments.map( comment => {
+			return (<Segment key={comment.id}>
+				<List.Header as="h2">
+					<User id={comment.user_id}/>
+				</List.Header>
 				<hr />
-				<List.Description>
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{comment.body}
-				</List.Description>
-				<br />
-				<List.Description> {comment.created_at}</List.Description>
-				<Button color="green" icon basic
-              onClick={() => deleteComment(comment.id)}
-              >
-								 <Icon name="trash alternate" />
-              </Button>
-			</Segment>
-		))
+				{isForm && currId === comment.id?
+						<CommentForm add={editComment} id={props.match.params}/>
+					:
+						<>
+							<List.Description>
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{comment.body}
+							</List.Description>
+							<br />
+							<List.Description> {comment.created_at}</List.Description>
+						</>
+				}
+				{ user.id === comment.user_id ?
+					<>
+						<Button color="red" icon basic
+									onClick={() => deleteComment(comment.id)}
+									>
+										<Icon name="trash alternate" />
+						</Button>
+						<Button color="green" icon basic
+									onClick={() => toggleForm(comment.id)}
+									>
+										<Icon name="pencil" />
+						</Button>
+					</>
+				:
+					null
+				}
+			</Segment>)
+		})
 	}
 
 
