@@ -15,33 +15,38 @@ const UserMenu = () => (
               </List.Content>
             </List.Item>
           </Link>
-          <Link to="/MyLikedVideos"></Link>
-          <List.Item>
-            <List.Icon name='thumbs up outline' color='black' size='big' inverted/>
-            <List.Content>
-              Liked Videos
-            </List.Content>
-          </List.Item>
+          <Link to="/MyLikedVideos">
+            <List.Item>
+              <List.Icon name='thumbs up outline' color='black' size='big' inverted/>
+              <List.Content>
+                Liked Videos
+              </List.Content>
+            </List.Item>
           </Link>
-          <Link to="/MyLikedVideos"></Link>
-          <List.Item>
-            <List.Icon name='comment outline' color='black' size='big' inverted/>
-            <List.Content>
-              Your Comments
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon name='list ul' color='black' size='big' inverted/>
-            <List.Content>
-              Your Playlists
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon name='user circle outline' color='black' size='big' inverted/>
-            <List.Content>
-              Friends
-            </List.Content>
-          </List.Item>
+          <Link to="/">
+            <List.Item>
+              <List.Icon name='comment outline' color='black' size='big' inverted/>
+              <List.Content>
+                Your Comments
+              </List.Content>
+            </List.Item>
+          </Link>
+          <Link to="/">
+            <List.Item>
+              <List.Icon name='play circle outline' color='black' size='big' inverted/>
+              <List.Content>
+                Playlist
+              </List.Content>
+            </List.Item>
+          </Link>
+          <Link to="/">
+            <List.Item>
+              <List.Icon name='user circle outline' color='black' size='big' inverted/>
+              <List.Content>
+                Friends
+              </List.Content>
+            </List.Item>
+          </Link>
         </List>
       </Segment>  
   </Container>
