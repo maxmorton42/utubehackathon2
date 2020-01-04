@@ -15,21 +15,22 @@ const UserMenu = () => (
               </List.Content>
             </List.Item>
           </Link>
-          <Link to="/MyLikedVideos"></Link>
-          <List.Item>
-            <List.Icon name='thumbs up outline' color='black' size='big' inverted/>
-            <List.Content>
-              Liked Videos
-            </List.Content>
-          </List.Item>
+          <Link to="/MyLikedVideos">
+						<List.Item>
+							<List.Icon name='thumbs up outline' color='black' size='big' inverted/>
+							<List.Content>
+								Liked Videos
+							</List.Content>
+						</List.Item>
           </Link>
-          <Link to="/MyLikedVideos"></Link>
-          <List.Item>
-            <List.Icon name='comment outline' color='black' size='big' inverted/>
-            <List.Content>
-              Your Comments
-            </List.Content>
-          </List.Item>
+          <Link to="/MyComments">
+						<List.Item>
+							<List.Icon name='comment outline' color='black' size='big' inverted/>
+							<List.Content>
+								Your Comments
+							</List.Content>
+						</List.Item>
+					</Link>
           <List.Item>
             <List.Icon name='list ul' color='black' size='big' inverted/>
             <List.Content>

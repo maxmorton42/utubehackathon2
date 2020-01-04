@@ -17,8 +17,8 @@ const Video = (props) => {
 	const user = useContext(AuthContext);
 
 	useEffect( () => {
-		const { id } = props.match.params
-    axios.get(`/api/videos/${props.location.pathname.charAt(props.location.pathname.length-1)}`)
+		const { id } = props.match.params;
+    axios.get(`/api/videos/${id}`)
     .then( res =>{
 			setVideo(res.data);
 		});
@@ -26,7 +26,6 @@ const Video = (props) => {
 		.then( res => setComments( res.data ) )
 	}, []) 
 	const addComment = (body) => {
-		console.log("add called!");
 		axios.post(`/api/videos/${props.match.params.id}/comments`, { body, video_id: props.match.params.id })
 			.then( res => {
 				setComments([...comments, res.data])
@@ -80,7 +79,7 @@ const Video = (props) => {
 							<List.Description> {comment.created_at}</List.Description>
 						</>
 				}
-				{ user.id === comment.user_id ?
+				{ user.user.id === comment.user_id ?
 					<>
 						<Button color="red" icon basic
 									onClick={() => deleteComment(comment.id)}
@@ -122,8 +121,8 @@ const Video = (props) => {
 			</Container>
 			<Divider />
 			<Container>
-				User
-				</Container>
+				<p>{video.description}</p>
+			</Container>
 			<Divider hidden />
 			<Container>
 				<CommentForm add={addComment} id={props.match.params}/>
