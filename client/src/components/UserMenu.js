@@ -16,6 +16,39 @@ const UserMenu = () => (
             </List.Item>
           </Link>
           <Link to="/MyLikedVideos">
+<<<<<<< HEAD
+            <List.Item>
+              <List.Icon name='thumbs up outline' color='black' size='big' inverted/>
+              <List.Content>
+                Liked Videos
+              </List.Content>
+            </List.Item>
+          </Link>
+          <Link to="/">
+            <List.Item>
+              <List.Icon name='comment outline' color='black' size='big' inverted/>
+              <List.Content>
+                Your Comments
+              </List.Content>
+            </List.Item>
+          </Link>
+          <Link to="/">
+            <List.Item>
+              <List.Icon name='play circle outline' color='black' size='big' inverted/>
+              <List.Content>
+                Playlist
+              </List.Content>
+            </List.Item>
+          </Link>
+          <Link to="/">
+            <List.Item>
+              <List.Icon name='user circle outline' color='black' size='big' inverted/>
+              <List.Content>
+                Friends
+              </List.Content>
+            </List.Item>
+          </Link>
+=======
 						<List.Item>
 							<List.Icon name='thumbs up outline' color='black' size='big' inverted/>
 							<List.Content>
@@ -43,6 +76,7 @@ const UserMenu = () => (
               Friends
             </List.Content>
           </List.Item>
+>>>>>>> f4b875211743a20a0919ed87b82b5136d247f583
         </List>
       </Segment>  
   </Container>
