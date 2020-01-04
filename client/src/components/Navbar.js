@@ -1,6 +1,6 @@
 import React from 'react'
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Menu, Image, Button, Container } from 'semantic-ui-react'
+import { Menu, Icon, Image, Button, Container } from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
 
 class Navbar extends React.Component {
@@ -10,24 +10,20 @@ class Navbar extends React.Component {
 
     if (user) {
       return (
-        <Container>
           <Menu.Menu position='right'>
-            <Menu.Item fitted='vertically'>
-              <Image verticalAlign='middle' circular src={require('./images/utoob_logo.png')} size='mini'/>
-            </Menu.Item>
+            <Link to='/usermenu'>
+              <Menu.Item fitted='vertically' style={{ minHeight: 74 }}>
+                <Image verticalAlign='top' circular src={require('./images/utoob_logo.png')} size='mini'/>
+              </Menu.Item>
+            </Link>
 						<Link to='/videos/new'>
-							<Menu.Item fitted='vertically' style={{ minHeight: 70 }}>
+							<Menu.Item fitted='vertically' style={{ minHeight: 74 }}>
 								<Button color='red' as='a'>
 									Upload Video
 								</Button>
-								{/* fitted='vertically'
-								verticalAlign='middle'
-								name='logout'
-								onClick={() => handleLogout(this.props.history)} */}
-								</Menu.Item>
-							</Link>
+							</Menu.Item>
+						</Link>
           </Menu.Menu>
-        </Container>
       )
     } else {
       return (
