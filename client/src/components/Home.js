@@ -30,12 +30,12 @@ const Home = () => {
 										</Grid.Row>
 									);
 								})}
-							}
+							
           </Grid>
           </>
   
   )
-}
+            }
 
 
 export default Home;
