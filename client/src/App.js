@@ -8,11 +8,16 @@ import FetchUser from './components/FetchUser';
 import Video from './components/Video';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
-import { Container, } from "semantic-ui-react";
+import { Container, Divider, } from "semantic-ui-react";
 
 const App = () => (
   <>
     <Navbar />
+		<Divider hidden/>
+		<Divider hidden/>
+		<Divider hidden/>
+		<Divider hidden/>
+		<Divider hidden/>
     <FetchUser>
       <Container>
         <Switch>

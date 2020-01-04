@@ -8,14 +8,22 @@ const Video = (props) => {
 	const [video, setVideo] = useState({});
 
 	useEffect( () => {
-    axios.get(`/api/videos/${props.id}`)
-    .then( res => setVideo(res.data) )
+    axios.get(`/api/videos/${props.location.pathname.charAt(props.location.pathname.length-1)}`)
+    .then( res =>{
+			debugger
+			setVideo(res.data);
+		});
   }, []) 
 
 	return(
 		<>
 			<div>
-				Video here
+			<iframe id="inlineFrameExample"
+				title="Inline Frame Example"
+				width="100%"
+				height="100%"
+				src={video.trailer}>
+			</iframe>
 			</div>
 			<div>
 				Title here                    likes over here
@@ -29,10 +37,10 @@ const Video = (props) => {
 					Comments here
 				</Grid.Column>
 				<Grid.Column>
+					<Divider vertical />
 					Other videos here
 				</Grid.Column>
 			</Grid>
-			<Divider vertical />
 		</>
 	);
 }
