@@ -33,9 +33,13 @@ const VideoForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("/api/videos", {  title, duration, genre, description, trailer, })
-      .then( res => {
+    axios.post("/api/videos", {title, duration, genre, description, trailer, } )
+    .then( res => {
+ 
         props.add(res.data);
+      })
+      .catch(err => {
+        console.log(err)
       })
   }
 

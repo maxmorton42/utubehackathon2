@@ -1,7 +1,9 @@
 import React, { useState, useEffect, } from 'react';
 import {Link, } from 'react-router-dom';
 import axios from 'axios';
+import VideoForm from './VideoForm';
 import { Header, Grid, Image } from 'semantic-ui-react';
+
 
 const Home = () => {
   const [videos, setVideos] = useState([])
@@ -9,13 +11,17 @@ const Home = () => {
   useEffect( () => {
     axios.get("/api/videos")
     .then( res => setVideos(res.data) )
-	}, [])
+  }, [])
+  
+  const addVideo = (video) => setVideos([ video, ...videos,  ]);
 
   return (
     <>
     <br />
     <br />
     <Header>All Videos</Header>
+        <br />
+        < VideoForm add={addVideo}/>
         <br />
             <Grid columns={2} divided>
 							{
