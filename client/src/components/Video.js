@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import {Divider, Grid, Segment,} from 'semantic-ui-react';
-import Iframe from 'react-iframe'
+import {Divider, Grid, Segment, Header, Container, Item} from 'semantic-ui-react';
+import Iframe from 'react-iframe';
 
 
 const Video = (props) => {
@@ -17,16 +17,16 @@ const Video = (props) => {
   }, []) 
 
 	return(
-		<>
-			<div>
+		<Fragment>
+			<Item>
 				<Iframe url={video.trailer}
 					width="100%vw"
-					height="800px"
+					height="500px"
 					id="myId"
 					className="myClassname"
 					display="initial"
 					position="relative"/>
-			</div>
+			</Item>
 			<div>
 				Title here                    likes over here
 			</div>
@@ -34,21 +34,20 @@ const Video = (props) => {
 			<div>
 				User here
 			</div>
-			<Segment>
-				<Grid columns={3} relaxed='very'>
-					<Grid.Column>
-						Comments here
-					</Grid.Column>
-					<Grid.Column>
-						Comments here
-					</Grid.Column>
-					<Divider vertical/>
-					<Grid.Column>
-						Other videos here
-					</Grid.Column>
+			<Divider hidden />
+			<Container>
+				<Grid columns={3}>
+					<Grid.Row>
+						<Grid.Column width={10}>
+							<Header as="h3">Comments</Header>
+						</Grid.Column>
+						<Grid.Column>
+							<Header as="h3">Other Videos</Header>
+						</Grid.Column>
+					</Grid.Row>
 				</Grid>
-			</Segment>
-		</>
+			</Container>
+		</Fragment>
 	);
 }
 

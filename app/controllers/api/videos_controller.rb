@@ -1,4 +1,5 @@
 class Api::VideosController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_video, only: [:update]
 
 	def index
@@ -10,7 +11,7 @@ class Api::VideosController < ApplicationController
   end
 
 	def create
-		video = Video.new(video_params)
+		video = current_user.videos.new(video_params)
 		if video.save
 			render json: video
 		else
@@ -32,7 +33,7 @@ class Api::VideosController < ApplicationController
 	
 	private
 		def video_params
-			params.require(:video).permit(:user_id, :title, :duration, :genre, :description, :trailer)
+			params.require(:video).permit(:title, :duration, :genre, :description, :trailer)
 		end
 
 		def set_video

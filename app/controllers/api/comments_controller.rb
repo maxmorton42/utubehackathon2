@@ -1,5 +1,5 @@
 class Api::CommentsController < ApplicationController
-
+	before_action :authenticate_user!
 	before_action :set_comment, only: [:update]
 	before_action :set_video, only: [:index]
 
@@ -8,7 +8,7 @@ class Api::CommentsController < ApplicationController
   end
 
 	def create
-		comment = Comment.new(comment_params)
+		comment = current_user.comments.new(comment_params)
 		if comment.save
 			render json: comment
 		else
@@ -38,6 +38,6 @@ class Api::CommentsController < ApplicationController
 		end
 
 		def comment_params
-			params.require(:comment).permit(:user_id, :video_id, :body)
+			params.require(:comment).permit(:video_id, :body)
 		end
 end

@@ -20,16 +20,20 @@ const App = () => (
 		<Divider hidden/>
 		<Divider hidden/>
     <FetchUser>
-      <Container>
-        <Switch>
+      <Switch>
+        <Container fluid>
+				<Container>
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <ProtectedRoute exact path='/my_likedvids' component={MyLikedVideos} />
-          <ProtectedRoute exact path="/videos/:id" component={Video} />
+				</Container>
+					<ProtectedRoute exact path="/videos/:id" component={Video} />
+        </Container>
+				<Container>
           <Route component={NoMatch} />
-        </Switch>
-      </Container>
+				</Container>
+      </Switch>
     </FetchUser>
   </>
 );
