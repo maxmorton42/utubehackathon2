@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import Video from './components/Video';
+import UserMenu from './components/UserMenu';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, Divider, } from "semantic-ui-react";
@@ -28,6 +29,7 @@ const App = () => (
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
 					<ProtectedRoute exact path="/videos/new" component={VideoForm}/>
+          <ProtectedRoute exact path="/usermenu" component={UserMenu}/>
           <ProtectedRoute exact path='/my_likedvids' component={MyLikedVideos} />
 				</Container>
 					<ProtectedRoute exact path="/videos/:id" component={Video} />
