@@ -1,5 +1,5 @@
 import React from 'react';
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import {Divider, Grid,} from 'semantic-ui-react';
 
