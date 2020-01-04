@@ -10,7 +10,6 @@ const Home = () => {
     .then( res => setVideos(res.data) )
   }, [])
 
-
   return (
     <>
     <br />
