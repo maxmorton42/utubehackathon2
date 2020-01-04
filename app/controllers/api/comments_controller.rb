@@ -1,6 +1,6 @@
 class Api::CommentsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_comment, only: [:update]
+	before_action :set_comment, only: [:update, :destroy, ]
 	before_action :set_video, only: [:index]
 
 	def index

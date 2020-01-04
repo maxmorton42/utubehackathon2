@@ -1,20 +1,56 @@
 import React, { Fragment } from 'react';
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import {Divider, Grid, Segment, Header, Container, Item} from 'semantic-ui-react';
+import CommentForm from './CommentForm'
+import {Divider, Grid, Segment, Header, Container, Item, List, Button, Icon } from 'semantic-ui-react';
 import Iframe from 'react-iframe';
 
 
 const Video = (props) => {
 
 	const [video, setVideo] = useState({});
+	const [comments, setComments] = useState([])
 
 	useEffect( () => {
+		const { id } = props.match.params
     axios.get(`/api/videos/${props.location.pathname.charAt(props.location.pathname.length-1)}`)
     .then( res =>{
 			setVideo(res.data);
 		});
-  }, []) 
+		axios.get(`/api/videos/${id}/comments`)
+		.then( res => setComments( res.data ) )
+	}, []) 
+	const addComment = (body) => {
+		axios.post(`/api/videos/${props.match.params.id}/comments`, { body, video_id: props.match.params.id })
+			.then( res => {
+				setComments([...comments, res.data]);
+			})
+	}
+
+	const deleteComment = (id) => {
+		axios.delete(`/api/videos/${props.match.params.id}/comments/${id}`)
+		.then( res => setComments(comments.filter( c => c.id !== id), ))
+	}
+
+	const renderComments = () => {
+		return comments.map( comment => (
+			<Segment key={comment.id}>
+				<List.Header as="h2">{comment.user_id}</List.Header>
+				<hr />
+				<List.Description>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{comment.body}
+				</List.Description>
+				<br />
+				<List.Description> {comment.created_at}</List.Description>
+				<Button color="green" icon basic
+              onClick={() => deleteComment(comment.id)}
+              >
+								 <Icon name="trash alternate" />
+              </Button>
+			</Segment>
+		))
+	}
+
 
 	return(
 		<Fragment>
@@ -27,19 +63,23 @@ const Video = (props) => {
 					display="initial"
 					position="relative"/>
 			</Item>
-			<div>
-				Title here                    likes over here
-			</div>
+				<Container>
+			<h1>	{video.title  }</h1>               
+			</Container>
 			<Divider />
-			<div>
-				User here
-			</div>
+			<Container>
+				User
+				</Container>
 			<Divider hidden />
 			<Container>
+				<CommentForm add={addComment} id={props.match.params}/>
 				<Grid columns={3}>
 					<Grid.Row>
 						<Grid.Column width={10}>
 							<Header as="h3">Comments</Header>
+							<List>
+								{ renderComments() }
+							</List>
 						</Grid.Column>
 						<Grid.Column>
 							<Header as="h3">Other Videos</Header>
