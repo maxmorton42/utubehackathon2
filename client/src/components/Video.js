@@ -6,6 +6,7 @@ import {Divider, Grid, Segment, Header, Container, Item, List, Button, Icon } fr
 import Iframe from 'react-iframe';
 import User from './User';
 import {AuthContext} from '../providers/AuthProvider';
+import VideoForm from './VideoForm';
 
 
 const Video = (props) => {
@@ -13,6 +14,7 @@ const Video = (props) => {
 	const [video, setVideo] = useState({});
 	const [comments, setComments] = useState([]);
 	const [isForm, setForm] = useState(false);
+	const [vidForm, setVidForm] = useState(false);
 	const [currId, setCurrId] = useState(null);
 	const user = useContext(AuthContext);
 
@@ -33,7 +35,7 @@ const Video = (props) => {
 	}
 
 	const deleteVideo = (id) => {
-		axios.delete(`/api/videos/${id}`)
+    axios.delete(`/api/videos/${id}`)
     .then( res => props.history.push('/') )
   }
 
@@ -59,6 +61,10 @@ const Video = (props) => {
 	const toggleForm = (id) => {
 		setCurrId(id);
 		setForm(!isForm);
+	}
+
+	const toggleVidForm = () => {
+		setVidForm(!vidForm);
 	}
 
 	const renderComments = () => {
@@ -102,22 +108,37 @@ const Video = (props) => {
 
 	return(
 		<Fragment>
-			<Item>
-				<Iframe url={video.trailer}
-					width="100%vw"
-					height="500px"
-					id="myId"
-					className="myClassname"
-					display="initial"
-					position="relative"/>
-			</Item>
+			{ vidForm ?
+					<VideoForm />
+				:
+					<Item>
+						<Iframe url={video.trailer}
+							width="100%vw"
+							height="500px"
+							id="myId"
+							className="myClassname"
+							display="initial"
+							position="relative"/>
+					</Item>
+			}
 				<Container>
 			<h1>	{video.title  }</h1>   
-			<Button color="green" icon basic
-              onClick={() => deleteVideo(video.id)}
-              >
-								 <Icon name="trash alternate" />
-              </Button>            
+			{ user.user.id === video.user_id ?
+				<>
+					<Button color="red" icon basic
+						onClick={() => deleteVideo(video.id)}
+						>
+								<Icon name="trash alternate" />
+					</Button>            
+					<Button color="green" icon basic
+						onClick={() => toggleVidForm()}
+						>
+								<Icon name="pencil" />
+					</Button>
+				</>
+				:
+				null
+			}            
 			</Container>
 			<Divider />
 			<Container>

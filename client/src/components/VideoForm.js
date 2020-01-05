@@ -32,7 +32,7 @@ const VideoForm = (props) => {
 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+		e.preventDefault();
     axios.post("/api/videos", {title, duration, genre, description, trailer, } )
     .then( res => {
         props.history.push('/');
